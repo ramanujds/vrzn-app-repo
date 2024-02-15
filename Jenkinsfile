@@ -26,9 +26,11 @@ pipeline {
 
             stage('Push Docker Image') {
             steps {
+             script{
                 withCredentials([usernameColonPassword(credentialsId: '9486f71c-052c-477d-9aef-bde0d8d7d9ba', variable: 'dockerhub_password')]) {
 
                     sh "docker login -u ram1uj -p $dockerhub_password"
+                }
                     sh "docker push ram1uj/vrxn-spring-boot-app"
                 }
             }
